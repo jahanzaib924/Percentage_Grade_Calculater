@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .score {
+        background-color: black;
+        color: white;
+    }
+</style>
+
+<body>
+    <h1>Input Your Total & Obtained Marks Check Percentage & Grade</h1>
+    <form onsubmit="doSum(); return false">
+
+        <label for="">Enter Total Marks</label><br>
+        <input type="number" id="total" placeholder="Total Marks">
+        <br>
+        <label for="">Enter Obtained Marks</label><br>
+        <input type="number" id="obtained" placeholder="Obtained Marks">
+        <br>
+
+        <button type="submit">Go</button>
+
+    </form>
+
+    <div class="score">
+        <p id="res"> You are score : <span id="result"></span>.%</p>
+        <hr>
+        <p id="para"> Grade is : <span id="all"></span> </p>
+    </div>
+
+    <script>
+
+        function doSum() {
+            let totalmarks = Number(document.querySelector("#total").value)
+            let obtainedmarks = +document.querySelector("#obtained").value
+            let grade = " ";
+            console.log(totalmarks, obtainedmarks)
+            let temp = document.getElementById("res");
+            temp.style.display = "block";
+            let all = document.getElementById("para");
+            all.style.display = "block";
+            let sum = (obtainedmarks / totalmarks) * 100;
+            if (sum > 100) {
+                sum = "invalid number please Enter 0 to 100";
+                grade = "invalid please enter o to 100";
+            } else if (sum <= 100 && sum >= 80) {
+                grade = "A+ Excellent";
+            } else if (sum <= 79 && sum >= 69) {
+                grade = "A Good";
+            } else if (sum <= 69 && sum >= 59) {
+                grade = "B fair";
+            } else if (sum <= 59 && sum >= 49) {
+                grade = "C OK";
+            } else if (sum <= 49 && sum >= 40) {
+                grade = "D Not Bad";
+            } else if (sum < 0) {
+                grade = "invalid number";
+                sum = "invalid please enter correct number";
+            } else {
+                grade = "Fail";
+            }
+
+            document.querySelector("#all").innerHTML = grade;
+
+
+
+            document.querySelector("#result").innerHTML = sum;
+
+        }
+    </script>
+</body>
+
+</html>
